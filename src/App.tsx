@@ -1,33 +1,28 @@
 import './scss/app.scss';
-import { Categories } from './components/Categories';
-import { useGetPizzas } from './hooks/useGetPizzas.ts';
 import { Header } from './components/Header';
-import { Sort } from './components/Sort';
+import { Route, Routes } from 'react-router-dom';
+import { Home } from './pages/Home.tsx';
 import { PizzaBlock } from './components/PizzaBlock';
-import { PizzaBlockSkeleton } from './components/PizzaBlock/PizzaBlockSkeleton.tsx';
+import { useGetPizzas } from './hooks/useGetPizzas.ts';
+import { NotFound } from './pages/NotFound.tsx';
+import { Cart } from './pages/Cart.tsx';
 
 function App() {
-  const { pizza, isLoading, error } = useGetPizzas('https://67e65f996530dbd3110fb55d.mockapi.io/items');
 
-  if (error) return <h2>Ошибка: {error.message}</h2>;
-
+  const { pizza } = useGetPizzas('https://67e65f996530dbd3110fb55d.mockapi.io/items');
   return (
     <>
+
       <div className="wrapper">
         <Header />
         <div className="content">
           <div className="container">
-            <div className="content__top">
-              <Categories />
-              <Sort />
-            </div>
-            <h2 className="content__title">Все пиццы</h2>
-            <div className="content__items">
-              {isLoading
-                ? (Array.from({ length: 8 }).map((_, index) => <PizzaBlockSkeleton key={`skeleton-${index}`} />))
-                : (pizza.map(pizza => <PizzaBlock key={pizza.id} {...pizza} />)
-                )}
-            </div>
+            <Routes>
+              <Route index element={<Home />} />
+              <Route path="/cart" element={<Cart />} />
+              <Route path="/pizza" element={<PizzaBlock {...pizza[0]} />} />
+              <Route path="/*" element={<NotFound/>} />
+            </Routes>
           </div>
         </div>
       </div>

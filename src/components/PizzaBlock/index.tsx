@@ -30,7 +30,7 @@ export const PizzaBlock = (props: Pizza) => {
       <h4 className="pizza-block__title">{title}</h4>
       <div className="pizza-block__selector">
         <ul>
-          {types.map((type, index) => (
+          {types?.map((type, index) => (
             <li key={index}
                 onClick={() => changeActiveType(index)}
                 className={activeType === index ? 'active' : ''}>
@@ -39,7 +39,7 @@ export const PizzaBlock = (props: Pizza) => {
           ))}
         </ul>
         <ul>
-          {sizes.map((size, index) => (
+          {sizes?.map((size, index) => (
             <li key={index}
                 className={activeSize === index ? 'active' : ''}
                 onClick={() => changeActiveSize(index)}>
