@@ -2,7 +2,7 @@ import logoImg from '../../assets/img/pizza-logo.svg';
 import { NavLink } from 'react-router-dom';
 import { CartIcon } from './CartIcon.tsx';
 
-export const Header = () => {
+export function Header () {
   return (
     <div className="header">
       <div className="container">
