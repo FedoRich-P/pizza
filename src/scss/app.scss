@@ -26,15 +26,22 @@ body {
   }
 
   &__items {
-    display: flex;
-    flex-wrap: wrap;
-    gap:33px;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    grid-template-rows: repeat(2, 1fr);
+    grid-gap: 16px;
   }
 
   &__top {
     display: flex;
     align-items: center;
     justify-content: space-between;
+
+    @media (max-width: 1300px) {
+      flex-direction: column;
+      row-gap: 30px;
+      align-items: flex-end;
+    }
   }
 }
 
