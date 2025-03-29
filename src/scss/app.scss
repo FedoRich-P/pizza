@@ -26,15 +26,22 @@ body {
   }
 
   &__items {
-    display: flex;
-    flex-wrap: wrap;
-    gap:33px;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    grid-template-rows: repeat(2, 1fr);
+    grid-gap: 16px;
   }
 
   &__top {
     display: flex;
     align-items: center;
     justify-content: space-between;
+
+    @media (max-width: 1300px) {
+      flex-direction: column;
+      row-gap: 30px;
+      align-items: flex-end;
+    }
   }
 }
 
@@ -71,7 +78,7 @@ body {
       margin-right: 10px;
       path {
         stroke: $black;
-        strokeWidth: 1.9;
+        stroke-width: 1.9;
       }
     }
   }
@@ -244,7 +251,6 @@ body {
         span {
           color: darken($color: $gray-line, $amount: 20);
           font-weight: 500;
-          font-weight: 600;
         }
 
         &:hover {
@@ -260,7 +266,7 @@ body {
           margin-right: 12px;
           path {
             fill: transparent;
-            strokeWidth: 2;
+            stroke-width: 2;
           }
         }
       }
@@ -291,7 +297,7 @@ body {
       color: #777777;
     }
 
-    icon {
+    .icon {
       position: relative;
       top: 2px;
     }

@@ -1,6 +1,11 @@
 //@import 'variables';
 @import '../variables.scss';
 .categories {
+  padding: 10px;
+  @media (max-width: 1030px) {
+    max-width: 100%;
+    overflow-x: auto;
+  }
   ul {
     display: flex;
 
