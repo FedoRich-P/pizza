@@ -1,7 +1,7 @@
 import './scss/app.scss';
 import { Header } from './components/Header';
 import { Route, Routes } from 'react-router-dom';
-import { Home } from './pages/Home.tsx';
+import { BASE_URL, Home } from './pages/Home.tsx';
 import { PizzaBlock } from './components/PizzaBlock';
 import { useGetPizzas } from './hooks/useGetPizzas.ts';
 import { NotFound } from './pages/NotFound.tsx';
@@ -9,7 +9,7 @@ import { Cart } from './pages/Cart.tsx';
 
 function App() {
 
-  const { pizza } = useGetPizzas('https://67e65f996530dbd3110fb55d.mockapi.io/items');
+  const { pizza } = useGetPizzas({url : BASE_URL});
   return (
     <>
 
