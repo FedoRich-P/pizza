@@ -1,7 +1,7 @@
 import { useEffect, useState, useCallback, useMemo } from 'react';
 import axios from 'axios';
 import { Pizza } from '../types';
-import { useDebounce } from '../hooks/useDebounce'; // Импортируем хук
+import { useDebounce } from './useDebounce.ts';
 
 export const useGetPizzas = ({ url, category, sortBy, order, search }: UseGetPizzasProps) => {
   const [pizza, setPizza] = useState<Pizza[]>([]);
