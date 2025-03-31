@@ -18,13 +18,10 @@ export const filterSlice = createSlice({
     decrement: (state) => {
       state.value -= 1
     },
-    incrementByAmount: (state, action: any) => {
-      state.value += action.payload
-    },
   },
 })
 
 // Action creators are generated for each case reducer function
-export const { increment, decrement, incrementByAmount } = filterSlice.actions
+export const { increment, decrement } = filterSlice.actions
 
 export const filterReducer = filterSlice.reducer
