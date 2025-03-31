@@ -21,7 +21,6 @@ export const filterSlice = createSlice({
   },
 })
 
-// Action creators are generated for each case reducer function
 export const { increment, decrement } = filterSlice.actions
 
 export const filterReducer = filterSlice.reducer
