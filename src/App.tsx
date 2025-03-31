@@ -6,7 +6,10 @@ import { PizzaBlock } from './components/PizzaBlock';
 import { useGetPizzas } from './hooks/useGetPizzas.ts';
 import { NotFound } from './pages/NotFound.tsx';
 import { Cart } from './pages/Cart.tsx';
-import { createContext, useState } from 'react';
+import { createContext } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { RootState } from './app/store.ts';
+import { decrement, increment } from './features/filterSlice.ts';
 
 type SearchProps = {
   searchValue: string;
@@ -17,27 +20,29 @@ export const SearchContext = createContext({} as SearchProps);
 
 function App() {
 
-  const [searchValue, setSearchValue] = useState('');
+  const data = useSelector((state: RootState) => state.filter.value);
+ const dispatch = useDispatch();
 
+  console.log(data);
 
-  const { pizza } = useGetPizzas({url : BASE_URL});
+  const { pizza } = useGetPizzas({ url: BASE_URL });
   return (
     <>
-
       <div className="wrapper">
-        <SearchContext.Provider value={{searchValue, setSearchValue }}>
-          <Header />
-          <div className="content">
-            <div className="container">
-              <Routes>
-                <Route index element={<Home />} />
-                <Route path="/cart" element={<Cart />} />
-                <Route path="/pizza" element={<PizzaBlock {...pizza[0]} />} />
-                <Route path="/*" element={<NotFound/>} />
-              </Routes>
-            </div>
+        <button onClick={() => dispatch(increment())}> + </button>
+        <button onClick={() => dispatch(decrement())}> - </button>
+        <Header />
+        <div className="content">
+          <div className="container">
+            <Routes>
+              <Route index element={<Home />} />
+              <Route path="/cart" element={<Cart />} />
+              <Route path="/pizza" element={<PizzaBlock {...pizza[0]} />} />
+              <Route path="/*" element={<NotFound />} />
+            </Routes>
           </div>
-        </SearchContext.Provider>
+        </div>
+        {/*</SearchContext.Provider>*/}
       </div>
     </>
   );

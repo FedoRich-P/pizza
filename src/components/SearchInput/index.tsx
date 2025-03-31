@@ -1,20 +1,18 @@
 import { FiSearch, FiX } from 'react-icons/fi';
 import styles from './SearchInput.module.scss';
-import { ChangeEvent, useContext, useEffect, useState } from 'react';
-import { SearchContext } from '../../App.tsx';
-import { useDebounce } from '../../hooks/useDebounce'; // Импортируем debounce хук
+import { ChangeEvent, useState } from 'react';
 
 export const SearchInput = () => {
-  const { setSearchValue } = useContext(SearchContext);
+  // const { setSearchValue } = useContext(SearchContext);
   const [localSearch, setLocalSearch] = useState('');
 
   // Дебаунс вводимого текста перед отправкой в глобальный state
-  const debouncedSearch = useDebounce(localSearch, 500);
+  // const debouncedSearch = useDebounce(localSearch, 500);
 
   // Следим за изменением debounced значения и обновляем контекст
-  useEffect(() => {
-    setSearchValue(debouncedSearch);
-  }, [debouncedSearch, setSearchValue]);
+  // useEffect(() => {
+  //   setSearchValue(debouncedSearch);
+  // }, [debouncedSearch, setSearchValue]);
 
   function handleSearchChange(e: ChangeEvent<HTMLInputElement>) {
     setLocalSearch(e.target.value);
@@ -22,7 +20,7 @@ export const SearchInput = () => {
 
   function handleResetInputValue() {
     setLocalSearch('');
-    setSearchValue(''); // Сброс поиска
+    // setSearchValue(''); // Сброс поиска
   }
 
   return (
