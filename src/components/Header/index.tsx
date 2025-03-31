@@ -1,8 +1,13 @@
 import logoImg from '../../assets/img/pizza-logo.svg';
 import { NavLink } from 'react-router-dom';
 import { CartIcon } from './CartIcon.tsx';
+import { SearchInput } from '../SearchInput';
 
-export function Header () {
+type HeaderProps = {
+  searchValue: string;
+  setSearchValue: (searchValue: string) => void;
+}
+export function Header ({searchValue, setSearchValue}: HeaderProps) {
   return (
     <div className="header">
       <div className="container">
@@ -13,6 +18,7 @@ export function Header () {
             <p>самая вкусная пицца во вселенной</p>
           </div>
         </NavLink>
+        <SearchInput searchValue={searchValue} setSearchValue={setSearchValue} />
         <div className="header__cart">
           <NavLink to="/cart" className="button button--cart">
             <span>520 ₽</span>
@@ -23,5 +29,5 @@ export function Header () {
         </div>
       </div>
     </div>
-  );
-};
+  )
+}

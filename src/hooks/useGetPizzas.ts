@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 import axios from 'axios';
 import { Pizza } from '../types';
 
-export const useGetPizzas = ({ url, category, sortBy, order }: UseGetPizzasProps) => {
+export const useGetPizzas = ({ url, category, sortBy, order, search }: UseGetPizzasProps) => {
   const [pizza, setPizza] = useState<Pizza[]>([]);
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState<Error | null>(null);
@@ -14,6 +14,9 @@ export const useGetPizzas = ({ url, category, sortBy, order }: UseGetPizzasProps
       try {
         setIsLoading(true);
         const params = new URLSearchParams();
+        if (search) {
+          params.append('search', search.toString());
+        }
 
         if (category !== undefined && category !== 0) {
           params.append('category', category.toString());
@@ -43,7 +46,7 @@ export const useGetPizzas = ({ url, category, sortBy, order }: UseGetPizzasProps
     fetchData();
 
     return () => controller.abort();
-  }, [url, category, sortBy, order]);
+  }, [url, category, sortBy, order, search]);
 
   return { pizza, isLoading, error };
 };
@@ -53,4 +56,5 @@ type UseGetPizzasProps = {
   category?: number;
   sortBy?: string;
   order?: string;
+  search?: string;
 };
