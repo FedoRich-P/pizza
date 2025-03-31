@@ -3,10 +3,6 @@ import { NavLink } from 'react-router-dom';
 import { CartIcon } from './CartIcon.tsx';
 import { SearchInput } from '../SearchInput';
 
-// type HeaderProps = {
-//   searchValue: string;
-//   setSearchValue: (searchValue: string) => void;
-// }
 export function Header () {
   return (
     <div className="header">
@@ -19,7 +15,6 @@ export function Header () {
           </div>
         </NavLink>
         <SearchInput/>
-        {/*<SearchInput searchValue={searchValue} setSearchValue={setSearchValue} />*/}
         <div className="header__cart">
           <NavLink to="/cart" className="button button--cart">
             <span>520 ₽</span>
