@@ -8,9 +8,4 @@ export default defineConfig({
         react(),
         tailwindcss(),
     ],
-    css: {
-        modules: {
-            localsConvention: 'camelCase'
-        }
-    }
 })
