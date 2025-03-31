@@ -1,18 +1,19 @@
-import { useState } from 'react';
+import { useContext, useState } from 'react';
 import { Categories } from '../components/Categories';
 import { Sort } from '../components/Sort';
 import { PizzaBlockSkeleton } from '../components/PizzaBlock/PizzaBlockSkeleton';
 import { PizzaBlock } from '../components/PizzaBlock';
 import { useGetPizzas } from '../hooks/useGetPizzas';
+import { SearchContext } from '../App.tsx';
 
 export const BASE_URL = 'https://67e65f996530dbd3110fb55d.mockapi.io/items'
 
-export const Home = ({searchValue}: HomeProps) => {
+export const Home = () => {
   const [categoryId, setCategoryId] = useState(0);
   const [sortType, setSortType] = useState('rating');
   const [sortDirection, setSortDirection] = useState<'asc' | 'desc'>('desc');
 
-  console.log(searchValue);
+  const {searchValue} = useContext(SearchContext)
 
   const { pizza, isLoading, error } = useGetPizzas({
     url: BASE_URL,
@@ -50,6 +51,6 @@ export const Home = ({searchValue}: HomeProps) => {
   );
 };
 
-type HomeProps = {
-  searchValue: string;
-}
+// type HomeProps = {
+//   searchValue: string;
+// }
