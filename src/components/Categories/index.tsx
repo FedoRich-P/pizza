@@ -21,8 +21,7 @@ export const Categories = ({ categoryId, setCategoryId }: CategoriesProps) => {
     <div className="categories">
       <ul>
         {CATEGORIES.map(category => (
-          <li
-            key={category.id}
+          <li key={category.id}
             onClick={() => handleCategoryClick(category.id)}
             className={category.id === categoryId ? 'active' : ''}
           >

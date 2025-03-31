@@ -25,19 +25,17 @@ export const SearchInput = () => {
 
   return (
     <div className={styles.container}>
-      <input
-        type="text"
-        value={localSearch}
-        onChange={handleSearchChange}
-        placeholder="Поиск пицц..."
-        className={styles.input}
+      <input type="text"
+             value={localSearch}
+             onChange={handleSearchChange}
+             placeholder="Поиск пицц..."
+             className={styles.input}
       />
       <div className={styles.iconContainer}>
         {localSearch && (
-          <FiX
-            size={30}
-            onClick={handleResetInputValue}
-            className="hover:text-red-500 transition-colors pr-2"
+          <FiX size={30}
+               onClick={handleResetInputValue}
+               className="hover:text-red-500 transition-colors pr-2"
           />
         )}
         <FiSearch className={styles.icon} />
