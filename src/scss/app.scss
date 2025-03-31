@@ -1,9 +1,6 @@
-@import url('https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,200..1000;1,200..1000&display=swap');
-
-@import './variables.scss';
-@import './libs/normalize.scss';
-
-@import './components/all';
+@use './variables.scss' as *;
+@use './libs/normalize.scss' as normalize;
+@use './components/all' as components;
 
 body {
   background-color: $background;
@@ -87,7 +84,6 @@ body {
     display: flex;
     align-items: center;
     cursor: pointer;
-    @include noselect();
 
     span {
       display: inline-block;
