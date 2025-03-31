@@ -1,18 +1,19 @@
 import { FiSearch, FiX } from 'react-icons/fi';
 import styles from './SearchInput.module.scss';
-import { ChangeEvent, useState } from 'react';
+import { ChangeEvent, useEffect, useState, memo } from 'react';
+import { useDispatch} from 'react-redux';
+import { setSearchValue } from '../../features/filterSlice.ts';
+import { useDebounce } from '../../hooks/useDebounce.ts';
 
-export const SearchInput = () => {
-  // const { setSearchValue } = useContext(SearchContext);
+export const SearchInput = memo(() => {
   const [localSearch, setLocalSearch] = useState('');
+  const dispatch = useDispatch();
 
-  // Дебаунс вводимого текста перед отправкой в глобальный state
-  // const debouncedSearch = useDebounce(localSearch, 500);
+  const debouncedSearch = useDebounce(localSearch, 500);
 
-  // Следим за изменением debounced значения и обновляем контекст
-  // useEffect(() => {
-  //   setSearchValue(debouncedSearch);
-  // }, [debouncedSearch, setSearchValue]);
+  useEffect(() => {
+    dispatch(setSearchValue(debouncedSearch));
+  }, [debouncedSearch, dispatch]);
 
   function handleSearchChange(e: ChangeEvent<HTMLInputElement>) {
     setLocalSearch(e.target.value);
@@ -20,7 +21,7 @@ export const SearchInput = () => {
 
   function handleResetInputValue() {
     setLocalSearch('');
-    // setSearchValue(''); // Сброс поиска
+    dispatch(setSearchValue(''));
   }
 
   return (
@@ -33,13 +34,15 @@ export const SearchInput = () => {
       />
       <div className={styles.iconContainer}>
         {localSearch && (
-          <FiX size={30}
-               onClick={handleResetInputValue}
-               className="hover:text-red-500 transition-colors pr-2"
-          />
+          <button type="button"
+                  onClick={handleResetInputValue}
+                  aria-label="Очистить поиск"
+                  className="hover:text-red-500 transition-colors pr-2">
+            <FiX size={30} />
+          </button>
         )}
         <FiSearch className={styles.icon} />
       </div>
     </div>
   );
-};
+});
