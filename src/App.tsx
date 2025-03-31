@@ -6,14 +6,6 @@ import { PizzaBlock } from './components/PizzaBlock';
 import { useGetPizzas } from './hooks/useGetPizzas.ts';
 import { NotFound } from './pages/NotFound.tsx';
 import { Cart } from './pages/Cart.tsx';
-import { createContext } from 'react';
-
-type SearchProps = {
-  searchValue: string;
-  setSearchValue: (searchValue: string) => void;
-}
-
-export const SearchContext = createContext({} as SearchProps);
 
 function App() {
   const { pizza } = useGetPizzas({ url: BASE_URL });
