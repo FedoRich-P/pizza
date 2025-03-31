@@ -7,7 +7,6 @@ type HeaderProps = {
   searchValue: string;
   setSearchValue: (searchValue: string) => void;
 }
-
 export function Header ({searchValue, setSearchValue}: HeaderProps) {
   return (
     <div className="header">
@@ -30,5 +29,5 @@ export function Header ({searchValue, setSearchValue}: HeaderProps) {
         </div>
       </div>
     </div>
-  );
-};
+  )
+}
