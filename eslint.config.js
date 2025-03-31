@@ -18,13 +18,13 @@ export default tseslint.config(
       'react-refresh': reactRefresh,
     },
     rules: {
+      "arrow-body-style": ["off"],
       ...reactHooks.configs.recommended.rules,
       'react-refresh/only-export-components': [
         'warn',
         { allowConstantExport: true },
 
       ],
-      "arrow-body-style": ["error", "as-needed"]
     },
   },
 )
