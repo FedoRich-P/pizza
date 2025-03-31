@@ -1,35 +1,24 @@
 import { useEffect, useRef, useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { RootState } from '../../app/store.ts';
+import { setSortDirection, setSortType } from '../../features/filterSlice.ts';
 
-const SORT_TYPES = {
-  rating: 'популярности',
-  price: 'цене',
-  title: 'алфавиту'
-};
-
-type SortProps = {
-  sortType: string;
-  setSortType: (type: string) => void;
-  sortDirection: 'asc' | 'desc';
-  setSortDirection: (dir: 'asc' | 'desc') => void;
-};
-
-export const Sort = ({
-                       sortType,
-                       setSortType,
-                       sortDirection,
-                       setSortDirection
-                     }: SortProps) => {
+export const Sort = () => {
   const [isOpen, setIsOpen] = useState(false);
   const sortRef = useRef<HTMLDivElement>(null);
 
+  const sortType = useSelector<RootState>(state => state.filter.sort.sortType);
+  const sortDirection = useSelector<RootState>(state => state.filter.sort.sortDirection);
+  const dispatch = useDispatch();
+
   const togglePopup = () => setIsOpen(!isOpen);
 
-  const handleSortChange = (type: string) => {
+  const handleSortChange = (type: SortType) => {
     if (type === sortType) {
-      setSortDirection(sortDirection === 'asc' ? 'desc' : 'asc');
+      dispatch(setSortDirection(sortDirection === 'asc' ? 'desc' : 'asc'));
     } else {
-      setSortType(type);
-      setSortDirection(type === 'price' ? 'desc' : 'asc');
+      dispatch(setSortType(type));
+      dispatch(setSortDirection(type === 'price' ? 'desc' : 'asc'));
     }
     setIsOpen(false);
   };
@@ -60,7 +49,7 @@ export const Sort = ({
             {Object.entries(SORT_TYPES).map(([key, value]) => (
               <li key={key}
                 className={sortType === key ? 'active' : ''}
-                onClick={() => handleSortChange(key)}>
+                onClick={() => handleSortChange(key as SortType)}>
                 {value} {sortType === key && (sortDirection === 'asc' ? '↑' : '↓')}
               </li>
             ))}
@@ -70,3 +59,18 @@ export const Sort = ({
     </div>
   );
 };
+
+const SORT_TYPES = {
+  rating: 'популярности',
+  price: 'цене',
+  title: 'алфавиту'
+};
+
+export type SortType = keyof typeof SORT_TYPES;
+
+// type SortProps = {
+//   sortType: string;
+//   setSortType: (type: string) => void;
+//   sortDirection: 'asc' | 'desc';
+//   setSortDirection: (dir: 'asc' | 'desc') => void;
+// };
