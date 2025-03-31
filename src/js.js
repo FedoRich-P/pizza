@@ -1,59 +1,51 @@
-
-// fn – функцию, возвращающую промис,
-// retries – количество попыток повторного вызова, если промис отклонён,
-// delay – задержку между попытками в миллисекундах.
-// Функция должна вызывать fn(). Если промис разрешается – возвращать его результат,
-// если отклоняется – ждать заданное время и повторять вызов, пока не исчерпаются попытки.
-//Если после всех попыток промис так и не разрешился, функция должна отклониться с последней ошибкой.
-
-function retryPromise(fn, retries, delay) {
-  let curAttempt = retries
-  return new Promise((res, rej) => {
-    function attempt(curAttempt) {
-      fn()
-        .then((data) => res(data))
-        .catch(error => {
-          console.log(curAttempt)
-          if (curAttempt <= 1) {
-            rej(error)
-          } else {
-            setTimeout(() => attempt(curAttempt - 1), delay)
-          }
-        })
-    }
-    attempt(curAttempt)
-  })
-
-  // if (retries === 0) {
-  //     throw
-  // } else {
-  //     fn()
-  //         .then(data => data)
-  //         .catch((err) => setTimeout(fn(), delay))
-  //     retries--
-  // }
+// function sortedSquares(nums) {
+//   const result = [];
+//   let left = 0 ;
+//   let right = nums.length - 1;
+//
+//   for (let i = nums.length - 1; i >= 0; i--) {
+//     if (Math.abs(nums[left]) > Math.abs(nums[right])) {
+//       result[i] = nums[left] ** 2;
+//       left++;
+//     } else {
+//       result[i] = nums[right] ** 2;
+//       right--;
+//     }
+//   }
+//   return result;
+// }
+//
+// console.log(sortedSquares([-4, -1, 0, 3, 10])); // [0, 1, 9, 16, 100]
 
 
+// function removeDuplicates(arr) {
+//   if (arr.length === 0) return 0
+//   let slow = 0;
+//   let fast = 1;
+//
+//   while (fast <= arr.length) {
+//     if(arr[fast] !== arr[slow]) {
+//       slow++
+//       arr[slow] = arr[fast];
+//     }
+//     fast++
+//   }
+//   return slow
+// }
+//
+// console.log(removeDuplicates([0, 0, 1, 1, 1, 2, 2, 3, 3, 4])); //→ 5
+// Массив преобразуется в [0, 1, 2, 3, 4, ...]
 
-  /* return new Promise((res, rej) => {
-
-  }) */
-}
-
-// Пример использования:
-let attemptCount = 0;
-function unstableTask() {
-  return new Promise((resolve, reject) => {
-    attemptCount++;
-    console.log(`Попытка ${attemptCount}`);
-    if (attemptCount < 3) {
-      reject(`Ошибка на попытке ${attemptCount}`);
-    } else {
-      resolve(`Успех на попытке ${attemptCount}`);
-    }
-  });
-}
-
-retryPromise(unstableTask, 2, 1000)
-  .then(result => console.log(result))
-  .catch(err => console.error(err));
+// function isPalindrome (string) {
+//   string = string.toLowerCase().replace(/[^a-z0-9]/g, '');
+//   let left = 0, right = string.length - 1;
+//   while (left < right) {
+//     if (string[left] !== string[right]) return false;
+//     left++;
+//     right--;
+//   }
+//   return true;
+// }
+//
+// console.log(isPalindrome('A man, a plan, a canal: Panama')); // true
+// console.log(isPalindrome('race a car'));  // false
