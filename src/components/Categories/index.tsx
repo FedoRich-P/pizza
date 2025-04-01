@@ -1,4 +1,4 @@
-const CATEGORIES = [
+export const CATEGORIES = [
   { id: 0, name: 'Все' },
   { id: 1, name: 'Мясные' },
   { id: 2, name: 'Вегетарианская' },
@@ -7,6 +7,7 @@ const CATEGORIES = [
   { id: 5, name: 'Закрытые' },
 ];
 
+export type CategoryId = typeof CATEGORIES[number]['id'];
 type CategoriesProps = {
   categoryId: number;
   setCategoryId: (id: number) => void;

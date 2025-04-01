@@ -1,25 +1,14 @@
-import { useEffect, useState, useCallback, useMemo } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 import axios from 'axios';
-import { Pizza } from '../types';
-import { useDebounce } from './useDebounce.ts';
+import { useQueryParams } from './useQueryParams';
+import { Pizza } from '@/types';
 
-export const useGetPizzas = ({ url, category, sortBy, order, search }: UseGetPizzasProps) => {
+export const useGetPizzas = ({ url, ...params }: UseGetPizzasProps) => {
   const [pizza, setPizza] = useState<Pizza[]>([]);
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState<Error | null>(null);
 
-  const debouncedSearch = useDebounce(search, 500);
-
-  const params = useMemo(() => {
-    const p = new URLSearchParams();
-    if (debouncedSearch) p.append('search', debouncedSearch);
-    if (category && category !== 0) p.append('category', category.toString());
-    if (sortBy) {
-      p.append('sortBy', sortBy);
-      if (order) p.append('order', order);
-    }
-    return p.toString();
-  }, [debouncedSearch, category, sortBy, order]);
+  const queryString = useQueryParams(params);
 
   const fetchData = useCallback(async (controller: AbortController) => {
     if (!url) {
@@ -30,29 +19,21 @@ export const useGetPizzas = ({ url, category, sortBy, order, search }: UseGetPiz
 
     try {
       setIsLoading(true);
-      const apiUrl = params ? `${url}?${params}` : url;
-
+      const apiUrl = queryString ? `${url}?${queryString}` : url;
       const response = await axios.get<Pizza[]>(apiUrl, {
         signal: controller.signal,
       });
 
-      if (response.status === 200 && response.data.length > 0) {
-        setPizza(response.data);
-        setError(null);
-      } else {
-        setPizza([]);
-        setError(new Error('Ничего не найдено'));
-      }
+      setPizza(response.data);
+      setError(response.data.length === 0 ? new Error('Ничего не найдено') : null);
     } catch (error) {
       if (!axios.isCancel(error)) {
-        console.error('Ошибка запроса:', error);
-        setPizza([]);
         setError(error instanceof Error ? error : new Error('Ошибка запроса'));
       }
     } finally {
       setIsLoading(false);
     }
-  }, [url, params]);
+  }, [url, queryString]);
 
   useEffect(() => {
     const controller = new AbortController();
@@ -63,7 +44,6 @@ export const useGetPizzas = ({ url, category, sortBy, order, search }: UseGetPiz
   return { pizza, isLoading, error };
 };
 
-// Типизация пропсов
 type UseGetPizzasProps = {
   url: string;
   category?: number;

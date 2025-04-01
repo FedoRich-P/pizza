@@ -1,5 +1,4 @@
-
-@import '../variables.scss';
+@use '../variables' as *;
 .pizza-block {
   display: flex;
   flex-direction: column;
