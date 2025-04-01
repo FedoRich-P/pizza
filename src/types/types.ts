@@ -1,5 +1,5 @@
 export type Pizza = {
-  id: string;
+  id: number;
   title: string;
   price: number;
   imageUrl: string;
@@ -7,6 +7,7 @@ export type Pizza = {
   types: number[];
   rating: number;
   category: number;
+  quantity?: number;
 };
 
 export const CATEGORIES = [

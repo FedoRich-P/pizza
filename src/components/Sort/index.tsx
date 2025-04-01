@@ -67,6 +67,7 @@ const SORT_TYPES = {
 };
 
 export type SortType = keyof typeof SORT_TYPES;
+export type SortDirection = 'asc' | 'desc';
 
 // type SortProps = {
 //   sortType: string;

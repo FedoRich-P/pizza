@@ -75,7 +75,7 @@ body {
       margin-right: 10px;
       path {
         stroke: $black;
-        stroke-width: 1.9;
+        strokeWidth: 1.9;
       }
     }
   }
@@ -187,11 +187,10 @@ body {
       width: 4%;
 
       .button {
-        border-color: darken($color: $gray-line, $amount: 10);
+        border-color: red;
       }
 
       svg {
-        transform: rotate(45deg);
 
         path {
           fill: darken($color: $gray-line, $amount: 15);
@@ -200,9 +199,9 @@ body {
 
       .button {
         svg {
-          width: 11.5px;
-          height: 11.5px;
-          position: relative;
+          //width: 14px;
+          //height: 14px;
+          //position: relative;
         }
         &:hover,
         &:active {
@@ -262,7 +261,7 @@ body {
           margin-right: 12px;
           path {
             fill: transparent;
-            stroke-width: 2;
+            strokeWidth: 2;
           }
         }
       }

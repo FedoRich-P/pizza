@@ -1,15 +1,17 @@
 import { useState } from 'react';
-import { Pizza } from '../../types.ts';
 import { PizzaBlockIcon } from './PizzaBlockIcon.tsx';
+import { addProduct } from '@/features/cartSlice';
+import { Pizza } from '@/types';
+import { useAppDispatch } from '@/app/hooks';
 
 export const PizzaBlock = (props: Pizza) => {
-
+  const dispatch = useAppDispatch();
   const [count, setCount] = useState(0);
   const [activeType, setActiveType] = useState<number>(0);
   const [activeSize, setActiveSize] = useState<number>(0);
 
   const typesName = ['тонкое', 'традиционное'];
-  const { title, price, imageUrl, sizes, types } = props;
+  const {id, title, price, imageUrl, sizes, types } = props;
 
   const changeActiveType = (index: number) => {
     setActiveType(index);
@@ -20,6 +22,15 @@ export const PizzaBlock = (props: Pizza) => {
   };
 
   const handleClickCount = () => {
+    const item = {
+      id,
+      title,
+      price,
+      imageUrl,
+      selectedType: typesName[activeType],
+      selectedSize: sizes[activeSize],
+    };
+    dispatch(addProduct(item));
     setCount(count => count + 1);
   };
   return (
