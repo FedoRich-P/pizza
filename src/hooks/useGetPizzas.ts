@@ -1,7 +1,7 @@
 import { useCallback, useEffect, useState } from 'react';
 import axios from 'axios';
-import { Pizza } from '../types';
 import { useQueryParams } from './useQueryParams';
+import { Pizza } from '@/types';
 
 export const useGetPizzas = ({ url, ...params }: UseGetPizzasProps) => {
   const [pizza, setPizza] = useState<Pizza[]>([]);

@@ -1,13 +1,14 @@
 import { useEffect } from 'react';
-import { useAppDispatch, useAppSelector } from '../app/hooks';
 import { useNavigate } from 'react-router-dom';
-import { useGetPizzas } from '../hooks/useGetPizzas';
-import { setCategoryId, setFilters } from '../features/filterSlice';
-import { SortDirection, SortType } from '../types/types';
-import { Categories } from '../components/Categories';
-import { Sort } from '../components/Sort';
-import { PizzaBlockSkeleton } from '../components/PizzaBlock/PizzaBlockSkeleton';
-import { PizzaBlock } from '../components/PizzaBlock';
+import { useAppDispatch, useAppSelector } from '@/app/hooks';
+import { setCategoryId, setFilters } from '@/features/filterSlice';
+import { SortDirection, SortType } from '@/types/types';
+import { useGetPizzas } from '@/hooks/useGetPizzas';
+import { Categories } from '@components/Categories';
+import { Sort } from '@components/Sort';
+import { PizzaBlockSkeleton } from '@components/PizzaBlock/PizzaBlockSkeleton';
+import { PizzaBlock } from '@components/PizzaBlock';
+
 
 export const BASE_URL = 'https://67e65f996530dbd3110fb55d.mockapi.io/items';
 

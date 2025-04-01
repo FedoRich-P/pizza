@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { RootState } from '../../app/store.ts';
-import { setSortDirection, setSortType } from '../../features/filterSlice.ts';
+import { RootState } from '@/app/store';
+import { setSortDirection, setSortType } from '@/features/filterSlice';
 
 export const Sort = () => {
   const [isOpen, setIsOpen] = useState(false);
