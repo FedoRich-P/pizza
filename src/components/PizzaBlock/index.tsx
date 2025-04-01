@@ -1,8 +1,8 @@
 import { useState } from 'react';
-import { PizzaBlockIcon } from './PizzaBlockIcon.tsx';
 import { addProduct } from '@/features/cartSlice';
 import { Pizza } from '@/types';
 import { useAppDispatch } from '@/app/hooks';
+import { PizzaBlockIcon } from '@components/PizzaBlock/PizzaBlockIcon';
 
 export const PizzaBlock = (props: Pizza) => {
   const dispatch = useAppDispatch();
