@@ -1,9 +1,16 @@
 import logoImg from '../../assets/img/pizza-logo.svg';
 import { NavLink } from 'react-router-dom';
-import { CartIcon } from './CartIcon.tsx';
-import { SearchInput } from '../SearchInput';
+import { useAppSelector } from '@/app/hooks';
+import { SearchInput } from '@components/SearchInput';
+import { CartIcon } from '@components/Header/CartIcon';
+
 
 export function Header () {
+  const items = useAppSelector(state => state.cart.items);
+
+  const totalCount = items.reduce((sum, item) => sum + item.count, 0);
+
+  const totalPrice  = useAppSelector(state => state.cart.totalPrice);
   return (
     <div className="header">
       <div className="container">
@@ -17,10 +24,10 @@ export function Header () {
         <SearchInput/>
         <div className="header__cart">
           <NavLink to="/cart" className="button button--cart">
-            <span>520 ₽</span>
+            <span>{totalPrice} ₽</span>
             <div className="button__delimiter"></div>
             <CartIcon />
-            <span>3</span>
+            <span>{totalCount}</span>
           </NavLink>
         </div>
       </div>
