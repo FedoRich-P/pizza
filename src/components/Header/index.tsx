@@ -1,4 +1,5 @@
-import logoImg from '../../assets/img/pizza-logo.svg';
+
+import logoImg from '@assets/img/pizzaLogo.svg';
 import { NavLink } from 'react-router-dom';
 import { useAppSelector } from '@/app/hooks';
 import { SearchInput } from '@components/SearchInput';
