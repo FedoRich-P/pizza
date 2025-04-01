@@ -1,5 +1,4 @@
-//@import 'variables';
-@import '../variables.scss';
+@use '../variables' as *;
 .sort {
   position: relative;
   &__label {

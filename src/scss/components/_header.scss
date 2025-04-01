@@ -1,5 +1,4 @@
-//@import 'variables';
-@import '../variables.scss';
+@use '../variables' as *;
 .header {
   border-bottom: 1px solid $gray-line;
   padding: 40px 0;
