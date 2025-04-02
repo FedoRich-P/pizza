@@ -9,7 +9,6 @@ import { Sort } from '@components/Sort';
 import { PizzaBlockSkeleton } from '@components/PizzaBlock/PizzaBlockSkeleton';
 import { PizzaBlock } from '@components/PizzaBlock';
 
-
 export const BASE_URL = 'https://67e65f996530dbd3110fb55d.mockapi.io/items';
 
 export const Home = () => {
@@ -23,7 +22,6 @@ export const Home = () => {
 
   useEffect(() => {
     const params = new URLSearchParams(window.location.search);
-
     dispatch(setFilters({
       categoryId: Number(params.get('category')) || 0,
       sort: {
@@ -33,7 +31,6 @@ export const Home = () => {
       search: params.get('search') || ''
     }));
   }, [dispatch]);
-
 
   useEffect(() => {
     const params = new URLSearchParams();
@@ -47,7 +44,6 @@ export const Home = () => {
   }, [categoryId, sortType, sortDirection, searchValue, navigate]);
 
   const { pizza, isLoading, error } = useGetPizzas({
-    url: BASE_URL,
     category: categoryId,
     sortBy: sortType,
     order: sortDirection,
@@ -58,7 +54,7 @@ export const Home = () => {
     dispatch(setCategoryId(id));
   };
 
-  if (error) return <h2>Ошибка: {error.message}</h2>;
+  if (error) return <h2>Ошибка: {error}</h2>;
 
   return (
     <div className="container">
@@ -90,3 +86,12 @@ export const Home = () => {
     </div>
   );
 };
+
+
+// const { pizza, isLoading, error } = useGetPizzas({
+//   url: BASE_URL,
+//   category: categoryId,
+//   sortBy: sortType,
+//   order: sortDirection,
+//   search: searchValue,
+// });
