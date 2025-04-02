@@ -86,12 +86,3 @@ export const Home = () => {
     </div>
   );
 };
-
-
-// const { pizza, isLoading, error } = useGetPizzas({
-//   url: BASE_URL,
-//   category: categoryId,
-//   sortBy: sortType,
-//   order: sortDirection,
-//   search: searchValue,
-// });

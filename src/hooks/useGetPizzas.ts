@@ -24,7 +24,6 @@ export const useGetPizzas = (params: UseGetPizzasProps) => {
 
 
 type UseGetPizzasProps = {
-  url: string;
   category?: number;
   sortBy?: string;
   order?: string;
