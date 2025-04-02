@@ -1,15 +1,12 @@
 import './scss/app.scss';
 import { Header } from './components/Header';
 import { Route, Routes } from 'react-router-dom';
-import { PizzaBlock } from './components/PizzaBlock';
-import { useGetPizzas } from '@/hooks/useGetPizzas';
-import { BASE_URL, Home } from '@/pages/Home';
+import { Home } from '@/pages/Home';
 import { Cart } from '@/pages/Cart';
 import { NotFound } from '@/pages/NotFound';
 
 
 function App() {
-  // const { pizza } = useGetPizzas({ url: BASE_URL });
   return (
     <>
       <div className="wrapper">
@@ -19,7 +16,6 @@ function App() {
             <Routes>
               <Route index element={<Home />} />
               <Route path="/cart" element={<Cart />} />
-              {/*<Route path="/pizza" element={<PizzaBlock {...pizza[0]} />} />*/}
               <Route path="/*" element={<NotFound />} />
             </Routes>
           </div>
