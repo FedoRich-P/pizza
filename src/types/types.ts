@@ -1,5 +1,5 @@
 export type Pizza = {
-  id: number;
+  id: string;
   title: string;
   price: number;
   imageUrl: string;
@@ -33,4 +33,21 @@ export type SortDirection = 'asc' | 'desc';
 export type SortParams = {
   type: SortType;
   direction: SortDirection;
+};
+
+export type CartItemIdentifier = {
+  id: string;
+  selectedType: string;
+  selectedSize: number;
+};
+
+export type CartItemBase = Omit<Pizza, 'rating' | 'category' | 'types' | 'sizes'>;
+
+export type CartItem = CartItemBase & {
+  count: number;
+} & CartItemIdentifier;
+
+export type CartState = {
+  totalPrice: number;
+  items: CartItem[];
 };

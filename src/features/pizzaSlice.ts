@@ -59,4 +59,3 @@ const pizzaSlice = createSlice({
 
 export const { setItems } = pizzaSlice.actions;
 export const pizzaReducer = pizzaSlice.reducer;
-

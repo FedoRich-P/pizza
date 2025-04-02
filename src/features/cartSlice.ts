@@ -43,7 +43,7 @@ export const cartSlice = createSlice({
       state.totalPrice = calculateTotalPrice(state.items);
     },
 
-    removeProduct: (state, action: PayloadAction<{id: number, selectedType: string, selectedSize: number}>) => {
+    removeProduct: (state, action: PayloadAction<{id: string, selectedType: string, selectedSize: number}>) => {
       const { id, selectedType, selectedSize } = action.payload;
       state.items = state.items.filter(item =>
         !(item.id === id &&
@@ -58,7 +58,7 @@ export const cartSlice = createSlice({
       state.totalPrice = 0;
     },
 
-    incrementCount: (state, action: PayloadAction<{id: number, selectedType: string, selectedSize: number}>) => {
+    incrementCount: (state, action: PayloadAction<{id: string, selectedType: string, selectedSize: number}>) => {
       const { id, selectedType, selectedSize } = action.payload;
       const item = state.items.find(item =>
         item.id === id &&
@@ -72,7 +72,7 @@ export const cartSlice = createSlice({
       }
     },
 
-    decrementCount: (state, action: PayloadAction<{id: number, selectedType: string, selectedSize: number}>) => {
+    decrementCount: (state, action: PayloadAction<{id: string, selectedType: string, selectedSize: number}>) => {
       const { id, selectedType, selectedSize } = action.payload;
       const item = state.items.find(item =>
         item.id === id &&

@@ -1,3 +1,16 @@
+function countWords(str) {
+  if (typeof str !== 'string') return 0;
+  const trimmed = str.trim();
+  if (trimmed === '') return 0;
+
+  return trimmed.split(/\s+/).length;
+}
+
+// console.log(countWords("The quick brown fox jumps over the lazy dog")); // Вывод: 9
+// console.log(countWords(" Hello   world  ")); // Вывод: 2
+
+
+
 // function sortedSquares(nums) {
 //   const result = [];
 //   let left = 0 ;
@@ -49,3 +62,56 @@
 //
 // console.log(isPalindrome('A man, a plan, a canal: Panama')); // true
 // console.log(isPalindrome('race a car'));  // false
+
+//Последовательное выполнение промисов
+//Задача:
+//Напиши функцию chainPromises(arr), которая принимает массив функций,
+// каждая из которых возвращает Promise, и выполняет их последовательно.
+
+// async function chainPromises(promises) {
+//   const resultArr = []
+//   for (let promise of promises) {
+//     const fn = async () => {
+//       console.log('async')
+//       const res = await promise();
+//       console.log('after')
+//       return res;
+//     }
+//     const res = await fn();
+//     resultArr.push(res)
+//   }
+//   console.log('123', resultArr)
+//   return resultArr
+// }
+//
+// // Тестируем
+// const f1 = () => Promise.resolve('Первый');
+// const f2 = () => Promise.resolve('Второй');
+// const f3 = () => Promise.resolve('Третий');
+//
+// chainPromises([f1, f2, f3]).then(console.log);//["Первый", "Второй", "Третий"]
+//
+// async function chainPromises1(promises) {
+//   const resultArr = []
+//   for (let promise of promises) {
+//     resultArr.push(await promise())
+//   }
+//   console.log('123', resultArr)
+//   return resultArr
+// }
+
+//Очередь промисов с задержкой
+//Задача:
+//Напиши функцию delayedLog(arr, delay), которая принимает массив строк
+// и выводит их в консоль с задержкой через delay мс.
+
+//
+// const delayedLog = async (arr, delay) => {
+//   for (let str of arr) {
+//     const result = await new Promise((resolve) => {
+//       setTimeout(() => resolve(str), delay)
+//     })
+//   }
+// }
+//
+// delayedLog(["Привет", "Как дела?", "Пока"], 1000);
