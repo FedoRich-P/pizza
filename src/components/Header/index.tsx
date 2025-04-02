@@ -9,6 +9,7 @@ import { CartIcon } from '@components/Header/CartIcon';
 export function Header () {
   const items = useAppSelector(state => state.cart.items);
 
+
   const totalCount = items.reduce((sum, item) => sum + item.count, 0);
 
   const totalPrice  = useAppSelector(state => state.cart.totalPrice);
